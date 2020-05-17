@@ -1,0 +1,54 @@
+﻿<!doctype html>
+<html>
+<head>
+<#assign base=request.contextPath />
+<base id="base" href="${base}">
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="full-screen" content="yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="keywords" content="老司机神器">
+<meta name="description" content="老司机神器">
+<title>【老司机神器】</title>
+<link href="${base}/static/img/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="page">
+  <div class="code">
+    <h3>扫码下载老司机神器</h3>
+	<!---二维码由后台生成--->
+    <img src="/qrcodeUrl?url=${codeUrl}"/>
+    <h2>邀请码 ${extensionCode}</h2>
+  </div>
+  <h1>懂的入！不解释！</h1>
+  <h5> <b class="red">186万</b>用户下载&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;推荐指数：<span class="red">★★★★★</span> </h5>
+  <div class="botton_block">
+    <button id="button1" class="button" onClick="location.href='${androidUrl}'">安卓下载</button>
+    <button id="button2" class="button" onClick="location.href='itms-services://?action=download-manifest&url=${iosUrl}'">苹果下载</button>
+  </div>
+  <!---官网地址后台可以修改--->
+  <h6> 请保存官网:http://www.mm808.app</h6>
+  <img src="${base}/static/img/tuiguang-desc.png" class="ads_pic">
+  <dl class="guide">
+    <dt>iOS如何安装？</dt>
+    <dd>1.APP下载完成後，请开启「设定」&gt;点选「通用」或「一般」<br/>
+      2.点选「描述档」或「描述档与装置管理」或「设备管理」<br/>
+      3.点入「企业级应用」的选项<br/>
+      4.按下『信任「Fresh Florist/Gyyan/Inte/3d」』<br/>
+      5.按下「信任」App即完成设定<br/>
+      6.点击开启「Lutube App」，开始享用 !</dd>
+    <dt>Android如何安装？</dt>
+    <dd>1.下载前请先至「设定」→「安全性」→ 将「未知的来源」打勾(务必请打勾)<br/>
+      2.点击本頁的「下载按钮」或扫描QR Code下载lutube apk并同意安装即可</dd>
+  </dl>
+</div>
+<div class="float">
+  <h3>老司机御用的神器<br/>
+    “神器在手，天下你有”,手机看福利视频，就是这么简单！赶紧试试吧！</h3>
+</div>
+<script type="text/javascript" src="{base}/static/js/jquery.js"></script>
+<script type="text/javascript" src="{base}/static/js/click.js"></script>
+<div id="weixin"> <img src="{base}/static/img/weixi.png" /> </div>
+</body>
+</html>

@@ -1,0 +1,600 @@
+<#include "/tpl/layout.html"> <@header>
+<style>
+label.error{
+	color:red;
+}
+.form-horizontal .control-label{
+    text-align: right;
+}
+</style>
+ </@header> <@body>
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+              <!-- page start-->
+              <div class="row">
+                  <div class="col-lg-12">
+                      <section class="panel">
+                          <header class="panel-heading">
+                              ${types}视频
+                          </header>
+                          <div class="panel-body">
+                              <form class="form-horizontal tasi-form" id="videoForm">
+                            	 	    <input type="hidden" id="id" name="id" value="${video.id}">
+                            <div class="form-group">
+                                      <label class="col-lg-2 control-label"><span style="color: #ff0000;">*</span>视频名称：</label>
+                                      <div class="col-lg-4">
+                                          <input type="text" class="form-control" name="videoName" id="videoName" placeholder="视频名称" value="${video.videoName}">
+                                      </div>
+                                  </div>
+                                   <div class="form-group">
+                                      <label class="col-lg-2 control-label">视频上传类型：</label>
+                                       <div class="col-lg-4">
+                                          <label class="radio-inline"> <input type="radio" name="videoType" class="radioItem"
+											value="1" <#if video.videoType!=""><#if video.videoType==1>checked="checked"</#if></#if>  >&nbsp;&nbsp;系统
+										</label>
+
+										<label class="radio-inline"> <input type="radio" name="videoType" class="radioItem"
+											value="2" 	<#if video.videoType!=""><#if video.videoType==2>checked="checked"</#if><#else>checked="checked"</#if> >&nbsp;&nbsp;外部
+										</label>
+
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-lg-2 control-label"><span style="color: #ff0000;">*</span>视频链接：</label>
+                                      <div class="col-lg-4 videoUrl1"   >
+                                          <input type="text" class="form-control" name="videoUrl" id="videoUrl1" placeholder="视频链接" value="${video.videoUrl}">
+                                      </div>
+                                      <div class="col-lg-8 videoUrl2" style="display: none" >
+                       <!--                   <button type="button" class="btn btn-primary" id="myBotton">选择视频</button>
+	                                      <input type="file"  id="videoFile" name="file" value=""  style="position:absolute;left:0px;top:0;width:100%;height:100%;z-index:999;opacity:0;cursor:pointer;">
+	                                      <input type="hidden"  id="videoUrl2" name="videoUrl" value="">
+	                                      <label>注:能仅支持mp4上传</label>-->
+                                          <input type="hidden"  id="videoUrl2" name="videoUrl" value="">
+                                          <div id="uploader" class="wu-example">
+                                              <!--用来存放文件信息-->
+                                              <div id="thelist" class="uploader-list"></div>
+                                              <div class="btns">
+                                                  <div id="picker">选择文件</div>
+                                                  <button id="ctlBtn" type="button" class="btn btn-default">开始上传</button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                            	  <div class="form-group">
+                            	  		<label class="col-lg-2 control-label"><span style="color: #ff0000;">*</span>明星</label>
+                            	  		<div class="col-lg-4">
+									    	<select id="starId" name="starId" class="form-control noselect2" >
+									    	   <option value="">明星</option>
+									    	</select>
+								    	</div>
+					              </div>
+					               <div class="form-group">
+                            	  		<label class="col-lg-2 control-label"><span style="color: #ff0000;">*</span>分类</label>
+                            	  		<div class="col-lg-4">
+									    	<select id="classifyId" name="classifyId" class="form-control noselect2" >
+									    	   <option value="">分类</option>
+									    	</select>
+								    	</div>
+					              </div>
+					              <div class="form-group">
+                            	  		<label class="col-lg-2 control-label"><span style="color: #ff0000;">*</span>标签：</label>
+                            	  		<div class="col-lg-3">
+                            	  		<input type="hidden"  name="tagIds" id="tagIds"  value="${video.tagIds}">
+									    	<select id="tagId"  class="form-control noselect2"  multiple="multiple">
+									    	   <option value="">标签</option>
+									    	</select>
+								    	</div>
+					              </div>
+                                  <div class="form-group">
+                                      <label class="col-lg-2 control-label"><span style="color: #ff0000;">*</span>上映时间：</label>
+                                      <div class="col-lg-4">
+                                          <input type="text" class="form-control" name="pushTime" id="pushTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" placeholder="上映时间" value="${video.pushTime}">
+                                      </div>
+                                  </div>
+
+                                   <div class="form-group">
+                                      <label class="col-lg-2 control-label">简介：</label>
+                                      <div class="col-lg-4">
+                                          <textarea class="form-control" rows="3" name="briefContent" style="width:430px;height:80px;resize:none" placeholder="暂无简介"
+												id="briefContent">${video.briefContent}</textarea>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-lg-2 control-label">视频封面上传类型：</label>
+                                      <div class="col-lg-4">
+                                          <label class="radio-inline"> <input type="radio" name="videoCoverType" class="videoCoverType"
+											value="1" <#if video.videoCoverType!=""><#if video.videoCoverType==1>checked="checked"</#if></#if> >&nbsp;&nbsp;系统
+										</label>
+										<label class="radio-inline"> <input type="radio" name="videoCoverType" class="videoCoverType"
+											value="2" <#if video.videoCoverType!=""><#if video.videoCoverType==2>checked="checked"</#if><#else>checked="checked"</#if> >&nbsp;&nbsp;外部
+										</label>
+                                      </div>
+                                  </div>
+                                   <div class="form-group">
+                                      <label class="col-lg-2 control-label">封面：</label>
+                                      <div class="col-lg-4 videoCover1" >
+                                          <input type="text" class="form-control" name="videoCover" id="videoCover1" placeholder="封面" value="${video.videoCover}">
+                                      </div>
+                                      <div class="col-lg-4 videoCover2"  style="display:none;">
+											<input type="hidden" id="videoCover2" name="videoCover" value="${video.videoCover}">
+											<div class="btn-file">
+												<div class="price-img" style="width: 128px; height: 128px; ">
+												<#if video.videoCover ?? && video.videoCover != ''>
+													<img id="myimg" src="${prefix}${video.videoCover}"
+														alt="上传图片" style="height: 128px; width: 128px"> <input
+														name="file" type="file" id="myFile"
+														style="position:relative ; left: 0; top:-128px; width: 128px; height: 128px; z-index: 999; opacity: 0">
+													<#else>
+													<img id="myimg" src="${base}/static/images/file-img.jpg"
+														alt="上传图片" style="height: 128px; width: 128px"> <input
+														name="file" type="file" id="myFile"
+														style="position: relative; left: 0; top:-128px; width: 128px; height: 128px; z-index: 999; opacity: 0">
+												</#if>
+												</div>
+											</div>
+										</div>
+                                  </div>
+                                   <div class="form-group">
+                                      <label class="col-lg-2 control-label"><span style="color: #ff0000;">*</span>播放次数：</label>
+                                      <div class="col-lg-4">
+                                          <input type="text" class="form-control" name="playNum" id="playNum" placeholder="播放次数" value="${video.playNum}">
+                                      </div>
+                                  </div>
+                                   <div class="form-group">
+                                      <label class="col-lg-2 control-label"><span style="color: #ff0000;">*</span>失效次数：</label>
+                                      <div class="col-lg-4">
+                                          <input type="text" class="form-control" name="loseNum" id="loseNum" placeholder="失效次数" value="${video.loseNum}">
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                            	  		<label class="col-lg-2 control-label"><span style="color: #ff0000;">*</span>渠道</label>
+                            	  		<div class="col-lg-4">
+									    	<select id="channelId" name="channelId" class="form-control noselect2" >
+									    	   <option value="">渠道</option>
+									    	</select>
+								    	</div>
+					              </div>
+
+                                  <div class="form-group">
+										 <div class="col-lg-offset-2 col-lg-10">
+											<button type="submit" class="btn btn-primary" id="confirm">确定</button>
+											<button type="button" class="btn btn-default cantrl" id="cancel">取消</button>
+										</div>
+									</div>
+                              </form>
+                          </div>
+
+                      </section>
+                  </div>
+              </div>
+              <!-- page end-->
+          </section>
+      </section>
+      <!--main content end-->
+</@body>
+<@footer> </@footer>
+<script type="text/javascript">
+    var starId = "${video.starId}";
+    var classifyId = "${video.classifyId}";
+    var channelId = "${video.channelId}";
+    var type = "${types}";
+    var videoType='${video.videoType}';
+    var videoCoverType='${video.videoCoverType}';
+    var tagsId=${tagIds};
+    var uploader;
+   $(function(){
+        $('#tagId').select2({ placeholder: "点击输入框，可以多选"});
+        $("#myFile").on("change", function() {
+            initUpload("myFile", "myimg", "videoCover2");
+        });
+        ajaxStarList(starId);
+        ajaxClassifyList(classifyId);
+        ajaxChannelList(channelId);
+        ajaxTagsList(tagsId);
+        if(videoType==1){
+            $(".videoUrl1").attr("style","display:none");
+            $(".videoUrl2").attr("style","");
+            uploader.refresh();
+         }else{
+              $(".videoUrl2").attr("style","display:none")
+              $(".videoUrl1").attr("style","");
+          }
+         if(videoCoverType==1){
+                $(".videoCover1").attr("style","display:none");
+                $(".videoCover2").attr("style","");
+          }else{
+              $(".videoCover2").attr("style","display:none")
+              $(".videoCover1").attr("style","");
+          }
+    })
+
+      $("body").on("change","#tagId",function(){
+        var tagIds="";
+        $("#tagId option:selected").each(function () {
+            tagIds=tagIds+$(this).val()+",";
+        })
+        $("#tagIds").val(tagIds);
+    })
+    $("body").on("change",".radioItem",function(){
+        var videoType = $("input[name='videoType']:checked").val();
+        if(videoType==1){
+            $(".videoUrl1").attr("style","display:none");
+            $(".videoUrl2").attr("style","");
+             uploader.refresh();
+        }else{
+          $(".videoUrl2").attr("style","display:none")
+          $(".videoUrl1").attr("style","");
+        }
+    });
+
+    $("body").on("change",".videoCoverType",function(){
+          var videoCoverType = $("input[name='videoCoverType']:checked").val();
+          if(videoCoverType==2){
+                $(".videoCover2").attr("style","display:none");
+                $(".videoCover1").attr("style","");
+          }else{
+              $(".videoCover1").attr("style","display:none")
+              $(".videoCover2").attr("style","");
+          }
+    })
+    $(function(){
+        validateFun();
+    })
+
+     function update(){
+        disBtn("confirm");
+        //var jsonData = $("#videoForm").serializeArray();
+        var id = $("#id").val();
+        var videoName = $("#videoName").val();
+        var videoType =$("input[name='videoType']:checked").val();
+        var videoUrl = "";
+        if(videoType =='1')
+        {
+            videoUrl =$("#videoUrl2").val();
+        }
+        if(videoType =='2')
+        {
+            videoUrl =$("#videoUrl1").val();
+        }
+        var starId = $("#starId").val();
+        var classifyId = $("#classifyId").val();
+        var tagIds = $("#tagIds").val();
+        var pushTime = $("#pushTime").val();
+        var briefContent = $("#briefContent").val();
+        var videoCoverType =$("input[name='videoCoverType']:checked").val();
+        var videoCover = "";
+        if(videoCoverType =='1')
+        {
+            videoCover =$("#videoCover2").val();
+        }
+        if(videoCoverType =='2')
+        {
+            videoCover =$("#videoCover1").val();
+        }
+        var playNum = $("#playNum").val()
+        var loseNum = $("#loseNum").val()
+        var channelId = $("#channelId").val()
+        var jsonData = {'id':id,
+        'videoName':videoName,'videoType':videoType,'videoUrl':videoUrl,'starId':starId,
+        'classifyId':classifyId,'tagIds':tagIds,'pushTime':pushTime,'briefContent':briefContent,'videoCoverType':videoCoverType,'videoCover':videoCover
+        ,'playNum':playNum,'loseNum':loseNum,'channelId':channelId};
+            $.ajax({
+                type : "POST",
+                url : "/admin/video/update",
+                dataType : "json",
+                data :jsonData,
+                success : function(result) {
+                    if (result.httpCode == 200) {
+                        toastr.options.onHidden = function() {
+                            myRefresh();
+                        };
+                        toastr.success("操作成功");
+                    }else {
+                        unDisBtn("confirm");
+                        toastr.error("操作失败，请重新提交！");
+                    }
+                },
+                error : function(e) {
+                    unDisBtn("confirm");
+                    toastr.error("系统异常，请联系管理员!");
+                }
+            })
+        }
+
+    $("#cancel").click(function() {
+        myRefresh();
+    });
+
+    function myRefresh() {
+        window.location.href = "/admin/video/list";
+    }
+
+    //明星
+    function ajaxStarList(starId){
+         $.ajax({
+             type:"POST",
+             url:"/webajax/ajaxStarList",
+             dataType:"json",
+             success:function(data){
+                 console.log(data);
+                 var options = '';
+                 var selected = "";
+                 for(var i=0;i<data.list.length;i++){
+                     if(data.list[i].id==starId){
+                         selected = "selected='selected'";
+                         starId = "";
+                     }
+                     options += '<option '+selected+' id="'+data.list[i].id+'" value="'+data.list[i].id+'">'+data.list[i].name+'</option>';
+                     selected = "";
+                 }
+                 $("#starId").append(options);
+             },error:function(e){
+                    toastr.error("系统异常，请联系管理员!");
+                }
+         });
+    }
+    //分类
+    function ajaxClassifyList(classifyId){
+         $.ajax({
+             type:"POST",
+             url:"/webajax/ajaxClassifyList",
+             dataType:"json",
+             success:function(data){
+                 console.log(data);
+                 var options = '';
+                 var selected = "";
+                 for(var i=0;i<data.list.length;i++){
+                     if(data.list[i].id==classifyId){
+                         selected = "selected='selected'";
+                         classifyId = "";
+                     }
+                     options += '<option '+selected+' id="'+data.list[i].id+'" value="'+data.list[i].id+'">'+data.list[i].name+'</option>';
+                     selected = "";
+                 }
+                 $("#classifyId").append(options);
+             },error:function(e){
+                    toastr.error("系统异常，请联系管理员!");
+                }
+         });
+    }
+    //渠道
+    function ajaxChannelList(channelId){
+         $.ajax({
+             type:"POST",
+             url:"/webajax/ajaxChannelList",
+             dataType:"json",
+             success:function(data){
+                 console.log(data);
+                 var options = '';
+                 var selected = "";
+                 for(var i=0;i<data.list.length;i++){
+                     if(data.list[i].id==channelId){
+                         selected = "selected='selected'";
+                         channelId = "";
+                     }
+                     options += '<option '+selected+' id="'+data.list[i].id+'" value="'+data.list[i].id+'">'+data.list[i].channelName+'</option>';
+                     selected = "";
+                 }
+                 $("#channelId").append(options);
+             },error:function(e){
+                    toastr.error("系统异常，请联系管理员!");
+                }
+         });
+    }
+    //标签
+    function ajaxTagsList(tagsId){
+         $.ajax({
+             type:"POST",
+             url:"/webajax/ajaxTagsList",
+             dataType:"json",
+             success:function(data){
+                 console.log(data);
+                 var options = '';
+                 var selected = "";
+                 for(var i=0;i<data.list.length;i++){
+                     for(var j=0;j<tagsId.length;j++){
+                         if(data.list[i].id==tagsId[j].tagId){
+                             selected = "selected='selected'";
+                            // tagId = "";
+                         }
+                     }
+                         options += '<option '+selected+' id="'+data.list[i].id+'" value="'+data.list[i].id+'">'+data.list[i].name+'</option>';
+                         selected = "";
+
+
+                 }
+                 $("#tagId").append(options);
+             },error:function(e){
+                    toastr.error("系统异常，请联系管理员!");
+                }
+         });
+    }
+    //
+    function validateFun(){
+        $("#videoForm").validate({
+            onkeyup:false,
+                rules: {
+
+                    videoName:{
+                        required:true,
+                        maxlength:50
+                    },
+                },
+                messages: {
+
+                    videoName: {
+                    required:"请输入视频名称！",
+                    maxlength:"长度在50个字符以内！"
+                }
+            },
+            submitHandler:function(form){
+                update();
+                return false;
+            }
+        });
+    }
+    $("body").on("change","#videoFile",function(){
+        var fileid = "videoFile";
+        var fileid1 = "videoUrl2";
+        var filepath = $("#"+fileid).val();
+        if(filepath==""){
+            toastr.warning("请选择文件！");
+            return false;
+        }
+        var allowExt = ".mp4";
+        var ext = filepath.substring(filepath.lastIndexOf("."));
+        if(allowExt.indexOf(ext.toLowerCase()) ==-1){
+            toastr.warning("不支持的文件格式！");
+            return false;
+        }
+        var file = $("#videoFile").val();
+        $.ajaxFileUpload({
+            url:"/upload/imageinp",
+            secureuri:false,
+            fileElementId:fileid,
+            dataType: "text",
+            success: function (result){
+                if(result!=""){
+                    var res = result.split("|");
+                    $("#"+fileid1).val(res[0]);
+                    if(file!=""){
+                        var pos=file.lastIndexOf("\\");
+                        var fileName = file.substring(pos+1);
+                        $("#myBotton").html(fileName);
+                    }
+                }else{
+                    toastr.error("上传失败！");
+                }
+                $("#"+fileid).val("");
+            },
+            error: function (data, status, e){
+                toastr.error("网络错误！");
+                $("#"+fileid).val("");
+            }
+         });
+    });
+
+        // upload
+        var fileId = '#picker';
+        var type = 'video';
+
+		var _extensions;
+		var _mimeTypes;
+		var allMaxSize = 10000;
+		if(type=='myFile'){
+			_extensions ='word,xls,xlsx,ppt';
+			_mimeTypes ='video/*,audio/*,application/*';
+			}else{
+			_extensions ='mp4,mov';
+			_mimeTypes ='video/mp4,video/mov';
+			}
+	    var $ = jQuery,
+	        $list = $('#thelist'),
+	        $btn = $('#ctlBtn'),
+	        state = 'pending';
+	    uploader = WebUploader.create({
+	        // 不压缩image
+	        resize: false,
+	        // swf文件路径，需要用到flash的时候BASE_URL自己根据需要定义 也可写成绝对路径
+	        swf: '${base}/static/plugins/webuploader/Uploader.swf',
+	        // 文件接收服务端。此处根据自己的框架写，本人用的是SpringMVC
+	        server: '/upload/videoUp',
+	        // 选择文件的按钮。可选。
+	        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+	        fileSizeLimit: allMaxSize*1024*1024,//限制大小，所有被选文件，超出选择不上
+	        fileNumLimit: 1,
+	        pick: {id: fileId,
+	                multiple: false
+	                },
+	        accept: {
+	            title: 'file',
+	            extensions: _extensions,
+	            mimeTypes: _mimeTypes
+	        }
+	    });
+
+	    //  验证大小
+	    uploader.on("error",function (type){
+	         if(type == "F_DUPLICATE"){
+	              toastr.error("不能重复选择文件！");
+	         }else if(type == "Q_EXCEED_SIZE_LIMIT"){
+	              toastr.error("所选文件总大小不可超过" + allMaxSize+"M");
+	         }
+	     });
+
+	    // 当有文件添加进来的时候
+	    uploader.on( 'fileQueued', function( file ) {
+	        $list.html( '<div id="' + file.id + '" class="item">' +
+	            '<h4 class="info">' + file.name + '</h4>' +
+	            '<p class="state">等待上传...</p>' +
+	        '</div>' );
+	    });
+
+	    // 文件上传过程中创建进度条实时显示。
+	    uploader.on( 'uploadProgress', function( file, percentage ) {
+	        var $li = $( '#'+file.id ),
+	            $percent = $li.find('.progress .progress-bar');
+
+	        // 避免重复创建
+	        if ( !$percent.length ) {
+	            $percent = $('<div class="progress progress-striped active">' +
+	              '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+	              '</div>' +
+	            '</div>').appendTo( $li ).find('.progress-bar');
+	        }
+
+	        $li.find('p.state').text('上传中');
+
+	        $percent.css( 'width', percentage * 100 + '%' );
+	    });
+
+	    uploader.on( 'uploadSuccess', function( file,data) {
+	    	console.log(data);
+	    	var url = data.fileUrl;  //上传视频路径
+	    	$("#videoUrl2").val(url);
+//	    	$("#videoName").val(file.name);
+//	    	$("#videoSourceName").val(file.name);
+	        $( '#'+file.id ).find('p.state').text('已上传');
+	    });
+
+	    uploader.on( 'uploadError', function( file ) {
+	        $( '#'+file.id ).find('p.state').text('上传出错');
+	    });
+
+	    uploader.on( 'uploadComplete', function( file ) {
+	        $( '#'+file.id ).find('.progress').fadeOut();
+	    });
+
+	    uploader.on( 'all', function( type ) {
+	        if ( type === 'startUpload' ) {
+	            state = 'uploading';
+	        } else if ( type === 'stopUpload' ) {
+	            state = 'paused';
+	        } else if ( type === 'uploadFinished' ) {
+	            state = 'done';
+	        }
+
+	        if ( state === 'uploading' ) {
+	           // $btn.text('暂停上传');
+	        } else {
+	            $btn.text('开始上传');
+	        }
+	    });
+
+	    $btn.on( 'click', function() {
+
+	        if ( state === 'uploading' ) {
+	          //  uploader.stop(true);
+	        } else {
+	            uploader.upload();
+	        }
+	    });
+    if(videoType==1){
+        $(".videoUrl1").attr("style","display:none");
+        $(".videoUrl2").attr("style","");
+    }else{
+        $(".videoUrl2").attr("style","display:none")
+        $(".videoUrl1").attr("style","");
+    }
+</script>

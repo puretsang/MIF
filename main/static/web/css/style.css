@@ -1,0 +1,175 @@
+.login-page {
+    width: 100%;
+    height: 13rem;
+    background: url('../images/bgi.png') no-repeat center top;
+    background-size: 100% 100%;
+}
+.login-page .m-navbar {
+    background-color: transparent;
+}
+.login-page .m-navbar:after {
+    border-bottom: none;
+}
+.login-page .navbar-item .back-ico:before, .login-page .navbar-center .navbar-title  {
+    color: #fff;
+}
+.logo {
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: .7rem auto 1.4rem;
+}
+.logo img {
+    width: 100%;
+    height: 100%;
+}
+.form-content {
+    width: 7rem;
+    height: 7.5rem;
+    border-radius: 5px;
+    background: url('../images/form-bg.png') no-repeat center top; 
+    background-size: 100% 100%;
+    margin: 0 auto;
+    padding: .5rem 1rem 1rem;
+}
+.tx {
+    display: flex;
+    justify-content: space-around;
+}
+.choose-role {
+    font-size: .3rem;
+    margin-bottom: .3rem;
+}
+.choose-role li {
+    font-size: .3rem;
+    color: #db253a;
+    padding: .2rem;
+    position: relative;
+}
+.choose-role li::after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+}
+.role-active::after {
+    border-bottom: 1px solid #db253a;
+}
+
+.form input {
+    -webkit-appearance: none;
+    border: none;
+    border-bottom: 1px solid #ededed;
+    width: 100%;
+    font-size: .28rem;
+    padding: .3rem 0 .3rem .6rem;
+}
+.form li {
+    position: relative;
+}
+.form li::after {
+    content: '';
+    width: .32rem;
+    height: 0.4rem;
+    position: absolute;
+    background: url('../images/phone.png') no-repeat center top;
+    background-size: 100% 100%;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.form ul>li:last-child::after {
+    background: url('../images/safe.png') no-repeat center top;
+    background-size: 100% 100%;
+}
+.form .btn {
+    border-radius: 20px;
+    background-color: #ff6c21;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.register {
+    width: 5rem;
+    margin: .5rem auto .2rem;
+    border-radius: 20px;
+    background: -webkit-linear-gradient(top, #ff6c21, #ff280e);/* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(top, #ff6c21, #ff280e);/* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(top, #ff6c21, #ff280e); /* Firefox 3.6 - 15 */
+    background: linear-gradient(top, #ff6c21, #ff280e);/* 标准语法 */
+}
+.rule {
+    text-align: center;
+    font-size: .24rem;
+    margin-bottom: 1rem;
+}
+.rule a {
+    color: #ff270d;
+}
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .2);
+}
+.register-success {
+    width: 7.5rem;
+    height: 6.63rem;
+    background: url('../images/success.png') no-repeat center top;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 1.6rem .5rem 0;
+}
+.center {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+}
+.center h3 {
+    font-size: .48rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.close {
+    width: 0.3rem;
+    height: 0.3rem;
+    position: absolute;
+    right: .4rem;
+    top: .2rem;
+}
+.close img {
+    width: 100%;
+    height: 100%;
+}
+.login-app {
+    position: absolute;
+    bottom: .5rem;
+    height: 0.8rem;
+    color: #fff;
+    font-size: .36rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4rem;
+    border-radius: 20px;
+    background: -webkit-linear-gradient(top, #ff6c21, #ff280e);/* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(top, #ff6c21, #ff280e);/* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(top, #ff6c21, #ff280e); /* Firefox 3.6 - 15 */
+    background: linear-gradient(top, #ff6c21, #ff280e);/* 标准语法 */
+}

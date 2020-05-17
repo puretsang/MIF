@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://tubiao.xiangjiao6383.club/ -->
+<html>
+
+<head id="head">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>【艾草视频】</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="applicable-device" content="pc,mobile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="keywords" content="老司机神器">
+    <meta name="description" content="老司机神器">
+    <link rel="stylesheet" href="${base}/static/css/style.css">
+    <link rel="stylesheet" href="${base}/static/css/appPay.css">
+</head>
+
+<body>
+<div class="main clearfix">
+    <div class="text-tips">
+        <h3>扫码下载艾草视频</h3>
+        <!---二维码由后台生成--->
+        <img src="/qrcodeUrl?url=${codeUrl}"/>
+        <#if extensionCode?exists>
+        <h2>邀请码 ${extensionCode}</h2>
+    </div>
+    #if>
+    <h1>懂的入！不解释！</h1>
+    <h5><b class="red">186万</b>用户下载&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;推荐指数：<span class="red">★★★★★</span></h5>
+</div>
+<div class="top-btn">
+
+    <a id="androidDown" href="javascript:;"><img class="download-ios linkDown"
+                                                 src="${base}/static/images/bt_android.png"></a>
+    <a id="iosDown" href="javascript:;"><img class="download-ios" src="${base}/static/images/bt_ios.png"></a>
+
+</div>
+</div>
+<div class="content">
+    <div class="tips">
+        <img class="sub-title-1" src="${base}/static/images/sub_title.png">
+        <div class="tiyan-tips"><img src="${base}/static/images/11.png"></div>
+        <div class="tiyan-tips"><img src="${base}/static/images/22.png"></div>
+        <div class="tiyan-tips"><img src="${base}/static/images/33.png"></div>
+    </div>
+    <div class="text-tips">
+        <dl class="guide">
+            <dt class="dt">iOS如何安装？</dt>
+            <dd class="dd">1. APP下载完成後，请开启「设定」&gt;点选「通用」或「一般」</dd>
+            <dd class="dd">2. 点选「描述档」或「描述档与装置管理」或「设备管理」</dd>
+            <dd class="dd">3. 点入「企业级应用」的选项</dd>
+            <dd class="dd">4. 按下『信任「Fresh Florist/Gyyan/Inte/3d」』</dd>
+            <dd class="dd">5. 按下「信任」App即完成设定</dd>
+            <dd class="dd">6. 点击开启「艾草视频 App」，开始享用 !</dd>
+            <dt class="dt">Android如何安装？</dt>
+            <dd class="dd">1. 下载前请先至「设定」→「安全性」→ 将「未知的来源」打勾(务必请打勾)</dd>
+            <dd class="dd">2. 点击本頁的「下载按钮」或扫描QR Code下载艾草视频apk并同意安装即可</dd>
+        </dl>
+    </div>
+</div>
+<script charset="UTF-8" src="//res.cdn.openinstall.io/openinstall.js">
+    document.documentElement.style.fontSize = document.body.clientWidth / 7.5 + 'px';
+</script>
+<script type="text/javascript">
+    var data = OpenInstall.parseUrlParams();//openinstall.js中提供的工具函数，解析url中的所有查询参数
+    new OpenInstall({
+        /*appKey必选参数，openinstall平台为每个应用分配的ID*/
+        appKey: "f37c8l",
+        /*可选参数，自定义android平台的apk下载文件名；个别andriod浏览器下载时，中文文件名显示乱码，请慎用中文文件名！*/
+        //apkFileName : 'com.fm.openinstalldemo-v2.2.0.apk',
+        /*可选参数，是否优先考虑拉起app，以牺牲下载体验为代价*/
+        //preferWakeup:true,
+        /*自定义遮罩的html*/
+        //mask:function(){
+        //  return "<div id='openinstall_shadow' style='position:fixed;left:0;top:0;background:rgba(0,255,0,0.5);filter:alpha(opacity=50);width:100%;height:100%;z-index:10000;'></div>"
+        //},
+        /*openinstall初始化完成的回调函数，可选*/
+        onready: function () {
+            var m = this, iosDown = document.getElementById("iosDown"),
+                androidDown = document.getElementById("androidDown");
+            iosDown.style.visibility = "visible";
+            androidDown.style.visibility = "visible";
+            /*在app已安装的情况尝试拉起app*/
+            m.schemeWakeup();
+            /*用户点击某个按钮时(假定按钮id为downloadButton)，安装app*/
+            androidDown.onclick = function () {
+                m.wakeupOrInstall();
+                return false;
+            }
+            iosDown.onclick = function () {
+                m.wakeupOrInstall();
+                return false;
+            }
+        }
+    }, data);
+
+    iosDown = document.getElementById("iosDown"), androidDown = document.getElementById("androidDown");
+    iosDown.onclick = function () {
+        window.location.href = 'itms-services://?action=download-manifest&url=${iosUrl}';
+        console.log('${iosUrl}');
+    };
+    androidDown.onclick = function () {
+        window.location.href = '${androidUrl}'
+        console.log('${androidUrl}');
+        console.log('${codeUrl}');
+    };
+
+</script>
+</body>
+
+</html>

@@ -24,19 +24,18 @@
         <!---二维码由后台生成--->
         <img src="/qrcodeUrl?url=${codeUrl}"/>
         <#if extensionCode?exists>
-        <h2>邀请码 ${extensionCode}</h2>
+            <h2>邀请码 ${extensionCode}</h2>
+        </#if>
+        <h1>懂的入！不解释！</h1>
+        <h5><b class="red">186万</b>用户下载&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;推荐指数：<span class="red">★★★★★</span></h5>
     </div>
-    #if>
-    <h1>懂的入！不解释！</h1>
-    <h5><b class="red">186万</b>用户下载&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;推荐指数：<span class="red">★★★★★</span></h5>
-</div>
-<div class="top-btn">
+    <div class="top-btn">
 
-    <a id="androidDown" href="javascript:;"><img class="download-ios linkDown"
-                                                 src="${base}/static/images/bt_android.png"></a>
-    <a id="iosDown" href="javascript:;"><img class="download-ios" src="${base}/static/images/bt_ios.png"></a>
+        <a id="androidDown" href="javascript:;"><img class="download-ios linkDown"
+                                                     src="${base}/static/images/bt_android.png"></a>
+        <a id="iosDown" href="javascript:;"><img class="download-ios" src="${base}/static/images/bt_ios.png"></a>
 
-</div>
+    </div>
 </div>
 <div class="content">
     <div class="tips">
@@ -60,52 +59,18 @@
         </dl>
     </div>
 </div>
-<script charset="UTF-8" src="//res.cdn.openinstall.io/openinstall.js">
-    document.documentElement.style.fontSize = document.body.clientWidth / 7.5 + 'px';
-</script>
+<script>document.documentElement.style.fontSize = document.body.clientWidth / 7.5 + 'px';</script>
 <script type="text/javascript">
-    var data = OpenInstall.parseUrlParams();//openinstall.js中提供的工具函数，解析url中的所有查询参数
-    new OpenInstall({
-        /*appKey必选参数，openinstall平台为每个应用分配的ID*/
-        appKey: "f37c8l",
-        /*可选参数，自定义android平台的apk下载文件名；个别andriod浏览器下载时，中文文件名显示乱码，请慎用中文文件名！*/
-        //apkFileName : 'com.fm.openinstalldemo-v2.2.0.apk',
-        /*可选参数，是否优先考虑拉起app，以牺牲下载体验为代价*/
-        //preferWakeup:true,
-        /*自定义遮罩的html*/
-        //mask:function(){
-        //  return "<div id='openinstall_shadow' style='position:fixed;left:0;top:0;background:rgba(0,255,0,0.5);filter:alpha(opacity=50);width:100%;height:100%;z-index:10000;'></div>"
-        //},
-        /*openinstall初始化完成的回调函数，可选*/
-        onready: function () {
-            var m = this, iosDown = document.getElementById("iosDown"),
-                androidDown = document.getElementById("androidDown");
-            iosDown.style.visibility = "visible";
-            androidDown.style.visibility = "visible";
-            /*在app已安装的情况尝试拉起app*/
-            m.schemeWakeup();
-            /*用户点击某个按钮时(假定按钮id为downloadButton)，安装app*/
-            androidDown.onclick = function () {
-                m.wakeupOrInstall();
-                return false;
-            }
-            iosDown.onclick = function () {
-                m.wakeupOrInstall();
-                return false;
-            }
-        }
-    }, data);
-
-    iosDown = document.getElementById("iosDown"), androidDown = document.getElementById("androidDown");
-    iosDown.onclick = function () {
-        window.location.href = 'itms-services://?action=download-manifest&url=${iosUrl}';
-        console.log('${iosUrl}');
-    };
-    androidDown.onclick = function () {
-        window.location.href = '${androidUrl}'
-        console.log('${androidUrl}');
-        console.log('${codeUrl}');
-    };
+        iosDown = document.getElementById("iosDown"), androidDown = document.getElementById("androidDown");
+        iosDown.onclick = function () {
+            window.location.href = 'itms-services://?action=download-manifest&url=${iosUrl}';
+            console.log('${iosUrl}');
+        };
+        androidDown.onclick = function () {
+            window.location.href = '${androidUrl}'
+            console.log('${androidUrl}');
+            console.log('${codeUrl}');
+        };
 
 </script>
 </body>
